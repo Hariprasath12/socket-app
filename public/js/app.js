@@ -13,11 +13,12 @@ Socket.on('connect', function() {
 });
 
 Socket.on('message', function(message) {
-	var momentSTAMP = moment.utc(message.timestamp);
+	var momentSTAMP = moment.utc(message.timestamp).zone("+05:30");
+	
 	var $apap=jQuery('.messages');
 	console.log('new message:');
 	console.log(message.text);
-     $apap.append('<p><strong>'+ message.name +' '+ momentSTAMP.format('h:m a') +'</strong> </p>');
+     $apap.append('<p><strong>'+ message.name +' '+ momentSTAMP.format('LT') +'</strong> </p>');
 	//$('.messages').append('<p> ' + message.text + '<sub>' + momentSTAMP.format('h:m a') + '</sub></p>');
       $apap.append('<p>' + message.text +' </p>');
 });
